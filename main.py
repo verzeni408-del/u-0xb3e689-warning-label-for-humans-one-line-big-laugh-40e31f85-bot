@@ -1,28 +1,25 @@
-"""Warning label for a human, written the way a real product label sounds.
+#!/usr/bin/env python3
+"""Warning label printer for the human enclosure."""
 
-The joke works because almost everyone has done exactly this. You open
-the box, skip the manual, put the thing together wrong, and only then go
-looking for the instructions. The label treats that habit like a contents
-warning, which is what makes it land: the product is not the box, it is
-the person holding it.
+SIGN_HEADER = "WARNING"
+GLASS_RULE = "Do not tap the glass."
+OCCUPANT = "The human inside is pretending to work"
+CONSEQUENCE = "and will bite if disturbed."
 
-"One (1) human" borrows the dry numbering style printed on real labels,
-so the line reads like something stamped on a package instead of a joke
-someone wrote. The punch sits in the last few words. "Only after breaking
-it" flips the order you expect, instructions first, and admits the truth
-in the bluntest way. One idea, no setup beyond the label format, and
-the laugh comes from recognising yourself in it.
-"""
 
-from pathlib import Path
-
-LABEL_TEXT = "WARNING: This product contains one (1) human who reads the instructions only after breaking it."
+def assemble_notice(header, rule, occupant, consequence):
+    pieces = [header + ":", rule, occupant, consequence]
+    return " ".join(pieces)
 
 
 def main():
-    out_path = Path("/output/entry.txt")
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(LABEL_TEXT, encoding="utf-8")
+    line = assemble_notice(
+        SIGN_HEADER,
+        GLASS_RULE,
+        OCCUPANT,
+        CONSEQUENCE,
+    )
+    print(line)
 
 
 if __name__ == "__main__":
